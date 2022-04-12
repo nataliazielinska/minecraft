@@ -277,3 +277,33 @@ textarea {
   height: 40px;
 }
 
+.header.links {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 18px;
+  padding: 16px;
+  text-transform: uppercase;
+}
+
+.header-link:after {
+  background: url("../img/down.svg") no-repeat;
+  background-size: 20px;
+  content: '';
+  height: 30px;
+  padding-right: 30px;
+  width: 30px;
+}
+
+.start-img {
+  height: 250px;
+}
+
+.start-screen-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#app {
+  padding: 48px 16px;
+}
