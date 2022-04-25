@@ -1,8 +1,8 @@
 window.lessons = [
   {
     name: 'lesson1',
-    title: 'Title1',
-    syllabus: 'wp.pl',
+    title: 'Warunki w programowaniu',
+    syllabus: 'https://wp.pl',
     sticker: 'link/do/img',
     commands: ['komenda1', 'komenda2'],
     programs: 'link/do/img',
@@ -11,7 +11,7 @@ window.lessons = [
   {
     name: 'lesson2',
     title: 'Title2',
-    syllabus: 'wp.pl',
+    syllabus: 'https://wp.pl',
     sticker: 'link/do/img',
     commands: ['komenda1', 'komenda2'],
     programs: 'link/do/img',
@@ -20,25 +20,25 @@ window.lessons = [
   {
     name: 'lesson3',
     title: 'Title3',
-    syllabus: 'wp.pl',
+    syllabus: 'https://wp.pl',
     sticker: 'link/do/img',
     commands: ['komenda1', 'komenda2'],
     programs: 'link/do/img',
     year: 1
   },
   {
-    name: 'lesson3',
+    name: 'lesson4',
     title: 'Title3',
-    syllabus: 'wp.pl',
+    syllabus: 'https://wp.pl',
     sticker: 'link/do/img',
     commands: ['komenda1', 'komenda2'],
     programs: 'link/do/img',
     year: 2
   },
   {
-    name: 'lesson3',
+    name: 'lesson5',
     title: 'Title3',
-    syllabus: 'wp.pl',
+    syllabus: 'https://wp.pl',
     sticker: 'link/do/img',
     commands: ['komenda1', 'komenda2'],
     programs: 'link/do/img',

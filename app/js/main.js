@@ -1,5 +1,14 @@
+import $ from "jquery";
+import generateLessons from './assets/generateLessons.js';
+
 $( document ).ready(function() {
-  let yearAr = new Array();
+  const yearAr = [];
+  let startYear;
+  let yearButton;
+
+  lessons.forEach(function (item){
+    yearAr.push(item.year);
+  });
 
   const createElementWithClass = (tag, nameOfClass) => {
     let element = document.createElement(tag);
@@ -16,49 +25,42 @@ $( document ).ready(function() {
     unique.sort();
 
     unique.forEach(function (item){
-      const startYear = createElementWithClass ("li", "start-year");
-      startYear.classList.add("year-"+item);
-      const yearButton = createElementWithClass ("button", "year-button");
-      yearButton.classList.add("year-"+item);
-      yearButton.appendChild(document.createTextNode("Rok " + item));
+      startYear = createElementWithClass ('li', 'start-year');
+      yearButton = createElementWithClass ('button', 'year-button');
+      $(yearButton).attr('data-year', item).on('click', generateLessons);
+      yearButton.appendChild(document.createTextNode(`Rok ${item}`));
       $(startYear).append(yearButton);
       $('.list-of-year').append(startYear);
     });
   }
 
-  lessons.forEach(function (item){
-    yearAr.push(item.year);
-  });
-
   const showStartScreen = () => {
 
-    const startScreenContainer = createElementWithClass ("div", "start-screen-container");
-    $('#app').append(startScreenContainer);
-    const startImg = createElementWithClass ("img", "start-img");
-    $(startImg).attr("src", 'img/dzieci.jpg');
+    $('#app').append(createElementWithClass('div', 'start-screen-container'));
+    const startImg = createElementWithClass('img', 'start-img');
+    $(startImg).attr('src', '../dist/app/img/dzieci.jpg');
     $('.start-screen-container').append(startImg);
-    const startTextContainer = createElementWithClass ("div", "start-text-container");
-    $('.start-screen-container').append(startTextContainer);
-    const startTitle = createElementWithClass ("p", "start-title");
-    startTitle.appendChild(document.createTextNode("Programowanie w Minecraft"));
+    $('.start-screen-container').append(createElementWithClass ('div', 'start-text-container'));
+    const startTitle = createElementWithClass ('p', 'start-title');
+    startTitle.appendChild(document.createTextNode('Programowanie w Minecraft'));
     $('.start-text-container').append(startTitle);
-    const startContent = createElementWithClass ("p", "start-content");
-    startContent.appendChild(document.createTextNode("Najbardziej innowacyjne zajęcia pozalekcyjne dla dzieci."));
+    const startContent = createElementWithClass ('p', 'start-content');
+    startContent.appendChild(document.createTextNode('Najbardziej innowacyjne zajęcia pozalekcyjne dla dzieci.'));
     $('.start-text-container').append(startContent);
-    const listOfYear = createElementWithClass ("ul", "list-of-year");
-    listOfYear.appendChild(document.createTextNode("Lekcje:"));
+    const listOfYear = createElementWithClass ('ul', 'list-of-year');
+    listOfYear.appendChild(document.createTextNode('Lekcje:'));
     $('.start-text-container').append(listOfYear);
 
     checkYear();
 
-    const allLessons = createElementWithClass ("li", "all-lessons");
-    const allLessonsButton = createElementWithClass ("button", "all-lessons-button");
-    allLessonsButton.appendChild(document.createTextNode("Lekcje wszystkie"));
-    $(allLessonsButton).attr("onclick", 'myFunction()');
-    $(allLessons).append(allLessonsButton);
-    $('.list-of-year').append(allLessons);
+    startYear = createElementWithClass ('li', 'start-year');
+    yearButton = createElementWithClass ('button', 'year-button');
+    $(yearButton).attr('data-year', 'all').on('click', generateLessons);
+    yearButton.appendChild(document.createTextNode('Lekcje wszystkie'));
+    $(startYear).append(yearButton);
+    $('.list-of-year').append(startYear);
+
   }
 
   showStartScreen();
-
 });
