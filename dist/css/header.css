@@ -1,0 +1,113 @@
+@import 'menu.css';
+@import 'variables.css';
+
+@media only screen {
+  .header.content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-hamburger {
+    display: block;
+    padding: 16px;
+  }
+
+  .header-hamburger.is-active:after {
+    background: var(--color-white-semitransparent);
+    content: '';
+    height: calc(100% - 50px);
+    left: 0;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+  }
+
+  .header-hamburger-box {
+    display: block;
+    height: var(--indent-xl);
+    width: var(--indent-xl);
+  }
+
+  .header-hamburger-item {
+    height: 3px;
+    background: var(--color-gray-dark);
+    width: var(--indent-xl);
+    position: absolute;
+    top: var(--indent-xl);
+    transition: transform var(--easing-cubic);
+  }
+
+  .header-hamburger-item.is-active {
+    transform: rotate(45deg);
+  }
+
+  .header-hamburger-item.is-active:before, .header-hamburger-item.is-active:after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+
+  .header-hamburger-item:before, .header-hamburger-item:after {
+    content: '';
+    height: 3px;
+    background: var(--color-gray-dark);
+    width: var(--indent-xl);
+    position: absolute;
+  }
+
+  .header-hamburger-item:before {
+    top: -10px;
+    transition: top var(--easing-cubic), transform  var(--easing-cubic);
+  }
+
+  .header-hamburger-item:after {
+    top: 10px;
+    transition: top var(--easing-cubic), transform var(--easing-cubic);
+  }
+
+  .header.logo {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .logo-item {
+    max-height: 40px;
+    padding: var(--indent-s);
+  }
+
+  .logo-misja {
+    cursor: pointer;
+  }
+
+  .logo-minecraft {
+    height: var(--indent-xl);
+  }
+}
+
+@media (min-width: 600px) {
+  .header.content {
+    display: block;
+  }
+
+  .header-hamburger {
+    display: none;
+  }
+
+  .logo-item {
+    max-height: 50px;
+  }
+
+  .logo-minecraft {
+    height: 40px;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .header-link:after {
+    background-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+}

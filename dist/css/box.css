@@ -1,0 +1,51 @@
+@import 'fonts.css';
+@import 'variables.css';
+
+@media {
+  .boxes-container {
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 16px;
+  }
+
+  .box-container {
+    box-shadow: 0 0 8px grey;
+    text-align: center;
+  }
+
+  .box-header {
+    background-color: var(--color-blue);
+    color: #fff;
+    min-height: 60px;
+    padding: 8px 0;
+    width: 100%;
+  }
+
+  .box-header-item {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+    padding: 4px 0;
+    text-transform: uppercase;
+  }
+
+  .box-content {
+    height: 235px;
+    position: relative;
+    width: 100%;
+  }
+}
+
+@media (min-width: 900px) {
+  .boxes-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .boxes-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

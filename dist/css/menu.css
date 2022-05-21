@@ -1,0 +1,117 @@
+@import 'variables.css';
+
+
+  .menu-links {
+    background: var(--color-gray-light);
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    left: -100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50px;
+    transition: .5s;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .menu-links.is-active {
+    left: 0;
+  }
+
+  .menu-link {
+    border-bottom: 2px solid var(--color-gray);
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    font-size: var(--indent-l);
+    font-weight: 700;
+    line-height: var(--indent-xxl);
+    position: relative;
+  }
+
+  .menu-link:last-child {
+    border-bottom: 0;
+  }
+
+  .menu-link:after {
+    background: url("../app/img/down.svg") no-repeat;
+    background-size: var(--indent-l);
+    content: '';
+    height: var(--indent-xl);
+    margin-left: var(--indent);
+    position: absolute;
+    right: 6px;
+    top: var(--indent-l);
+    width: var(--indent-xl);
+  }
+
+  .menu-link span {
+    margin: 0 var(--indent-m);
+  }
+
+  .menu-sublinks {
+    display: none;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    top: 100%;
+  }
+
+  .menu-sublinks.is-active {
+    display: block;
+  }
+
+  .menu-sublink {
+    border-top: 1px solid var(--color-gray);
+  }
+
+  .menu-sublink:first-child {
+    border-top: 2px solid var(--color-gray);
+  }
+
+  .menu-sublink a {
+    display: inline-block;
+    color: var(--color-gray-dark);
+    font-size: var(--indent-m);
+    margin: 0 28px;
+    text-decoration: none;
+    width: 100%;
+  }
+
+
+@media (min-width: 600px) {
+  .menu-links {
+    background: none;
+    flex-direction: row;
+    left: 0;
+    position: relative;
+    top: 0;
+  }
+
+  .menu-link {
+    border: 0;
+  }
+
+  .menu-link:after {
+    right: -20px;
+  }
+
+  .menu-sublinks {
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 0 8px grey;
+    margin-left: 10px;
+    position: absolute;
+    width: 100%;
+  }
+
+  .menu-sublink a {
+    color: #000;
+    margin: 0;
+    text-align: center;
+  }
+}

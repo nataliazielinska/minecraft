@@ -1,0 +1,68 @@
+@import 'fonts.css';
+@import 'variables.css';
+
+@media {
+  .intro-box-header {
+    background-color: var(--color-pink);
+  }
+
+  .lessons-box-header {
+    background-color: var(--color-green);
+  }
+
+  .adds-box-header {
+    background-color: var(--color-yellow);
+  }
+
+  .start-box-header-item {
+    font-size: 24px;
+    line-height: 60px;
+    padding: 0 24px;
+    text-align: start;
+  }
+
+  .start-box-content {
+    align-items: flex-start;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+  }
+
+  .intro-box-content {
+    background-color: var(--color-pink-semitransparent);
+  }
+
+  .lessons-box-content {
+    background-color: var(--color-green-semitransparent);
+  }
+
+  .adds-box-content {
+    background-color: var(--color-yellow-semitransparent);
+  }
+
+  .start-box-item-description {
+    margin: 0;
+    padding: 8px;
+    text-align: justify;
+  }
+
+  .start-box-item-description {
+    padding: 8px;
+    text-align: justify;
+  }
+
+  .start-box-items-container {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    width: 100%;
+  }
+
+  .start-buttons-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,187 @@
+@import 'fonts.css';
+@import 'variables.css';
+
+@media {
+  #app {
+    padding: 48px 16px;
+    position: relative;
+  }
+
+  .lesson-error {
+    background: var(--color-error--background);
+    color: red;
+    font-weight: 600;
+    padding: 2em;
+    text-align: center;
+  }
+
+  .lesson-title {
+    font-weight: 600;
+    text-transform: none;
+  }
+
+  .lesson-content {
+    cursor: pointer;
+  }
+
+  .lesson-content.activated-commands {
+    z-index: 20;
+  }
+
+  .lesson-links {
+    align-items: center;
+    background-color: var(--color-white-semitransparent);
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .lesson-links.is-active {
+    display: flex;
+  }
+
+  .lesson-links a {
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .lesson-links button {
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .lesson-image {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .commands-container {
+    background: var(--color-gray-light);
+    box-sizing: border-box;
+    cursor: default;
+    height: 100vh;
+    left: -200%;
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    transition: left .5s;
+    width: 100vw;
+    z-index: 20;
+  }
+
+  .commands-container.is-active {
+    left: 0;
+  }
+
+  .commands-title {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .command {
+    padding: 8px;
+    text-align: start;
+  }
+
+  .command-line-container {
+    background: var(--color-gray-dark-semitransparent);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    font-family: Consola;
+    margin-top: 8px;
+    padding: 8px;
+    position: relative;
+  }
+
+  .command-line {
+    padding-right: 72px;
+  }
+
+  .command-copy-button {
+    border: 1px solid black;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px;
+    right: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 60px;
+  }
+
+  .command-copy-alert {
+    display: none;
+    background: var(--color-gray);
+    border-radius: 4px;
+    padding: 4px;
+    position: absolute;
+    right: 0;
+    top: -32px;
+  }
+
+  .command-copy-alert.is-active {
+    display: block;
+  }
+
+  .sticker-image-container {
+    display: none;
+    background-color: rgba(255,255,255,0.6);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .sticker-image-container.is-active {
+    display: block;
+  }
+
+  .sticker-image-holder {
+    height: 180px;
+    left: 50%;
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+  }
+
+  .sticker-image {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .sticker-holder-close {
+    border: 2px solid var(--color-gray);
+    right: -10px;
+    top: -10px;
+  }
+}
+
+@media (min-width: 600px) {
+
+}
+
+@media only screen and (min-width: 900px) {
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+}
