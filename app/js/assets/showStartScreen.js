@@ -13,10 +13,10 @@ export default function showStartScreen () {
     header: {className: 'intro-box-header', textNode: 'Wprowadzenie'},
     content: {
       className: 'intro-box-content',
-      description: 'Najważniejsze informacje o samej wersji edukacyjnej Minecraft oraz podstawowe komendy używane podczas lecji',
+      description: 'Najważniejsze informacje o wersji edukacyjnej Minecraft oraz podstawowe komendy używane podczas lecji',
     },
     link: {textNode: 'Wprowadzenie', href: '././wprowadzenie.pdf'},
-    buttons: [{className: 'start-box-commands', textNode: 'Komendy', handler: activateCommandsBlock, commands: basicCommands}],
+    buttons: [{className: ['start-box-commands', 'intro-box-commands'], textNode: 'Komendy', handler: activateCommandsBlock, commands: basicCommands}],
     image: {className: 'intro-box-image', src: '././img/intro.png'}
   }
 

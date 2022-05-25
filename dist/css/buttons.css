@@ -1,0 +1,67 @@
+@import 'variables.css';
+
+
+@media only screen {
+
+  button, a {
+    box-sizing: border-box;
+    border: none;
+    color: white;
+    cursor: pointer;
+    height: 42px;
+    font-size: var(--indent-l);
+    font-weight: 600;
+    line-height: 38px;
+    margin-bottom: 16px;
+    padding: 1px 6px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 176px;
+  }
+
+  button:hover, a:hover {
+    filter: brightness(95%);
+  }
+
+  button:after, a:after {
+    bottom: -10px;
+    border: 5px solid transparent;
+    content: "";
+    filter: brightness(85%);
+    left: -0.5px;
+    position: absolute;
+    height: 0;
+    width: 166px;
+  }
+
+  .close-sign {
+    cursor: pointer;
+    height: 40px;
+    position: absolute;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    width: 40px;
+  }
+
+  .close-sign:before, .close-sign:after {
+    border-bottom: 2px solid var(--color-gray);
+    content: '';
+    height: 20px;
+    position: absolute;
+    top: 0px;
+    width: 20px;
+  }
+
+  .close-sign:before {
+    left: 3px;
+    transform: rotate(-45deg);
+  }
+
+  .close-sign:after {
+    right: 3px;
+    transform: rotate(45deg);
+  }
+}

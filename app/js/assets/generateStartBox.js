@@ -26,7 +26,7 @@ export default function generateStartBox (startBoxItems) {
   startBoxItems.buttons.forEach(function (button) {
     startButtonsContainer.append(elementFactory({
       tag: 'button',
-      className: ['start-box-button', button.className],
+      className: ['start-box-button', ...button.className],
       textNode: button.textNode,
       attr: button.attr,
       event: 'click',

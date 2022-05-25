@@ -48,6 +48,6 @@ window.lessons = [
       'Tytuł z opisem komendy': '/komenda do skopiowania',
       'Tytuł 2': '/komenda do skopiowania'
     },
-    year: 2
+    year: 'ferie'
   }
 ]

@@ -1,23 +1,12 @@
+@import 'commands.css';
 @import 'fonts.css';
 @import 'variables.css';
 
 @media {
+
   #app {
     padding: 48px 16px;
     position: relative;
-  }
-
-  .lesson-error {
-    background: var(--color-error--background);
-    color: red;
-    font-weight: 600;
-    padding: 2em;
-    text-align: center;
-  }
-
-  .lesson-title {
-    font-weight: 600;
-    text-transform: none;
   }
 
   .lesson-content {
@@ -28,34 +17,12 @@
     z-index: 20;
   }
 
-  .lesson-links {
-    align-items: center;
-    background-color: var(--color-white-semitransparent);
-    display: none;
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-end;
-    position: absolute;
-    width: 100%;
-    z-index: 10;
-  }
-
-  .lesson-links.is-active {
-    display: flex;
-  }
-
-  .lesson-links a {
-    color: black;
-    font-size: 18px;
+  .lesson-error {
+    background: var(--color-error--background);
+    color: red;
     font-weight: 600;
-    padding-bottom: 8px;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  .lesson-links button {
-    cursor: pointer;
-    width: fit-content;
+    padding: 2em;
+    text-align: center;
   }
 
   .lesson-image {
@@ -67,76 +34,50 @@
     width: 100%;
   }
 
-  .commands-container {
-    background: var(--color-gray-light);
-    box-sizing: border-box;
-    cursor: default;
-    height: 100vh;
-    left: -200%;
-    padding: 24px 16px;
-    position: fixed;
-    top: 0;
-    transition: left .5s;
-    width: 100vw;
-    z-index: 20;
+  .lesson-image.activated-links {
+    display: none;
   }
 
-  .commands-container.is-active {
-    left: 0;
-  }
-
-  .commands-title {
-    font-size: 20px;
-    font-weight: 700;
-    padding: 16px;
+  .lesson-item {
+    background: var(--color-blue);
     text-align: center;
   }
 
-  .command {
-    padding: 8px;
-    text-align: start;
-  }
-
-  .command-line-container {
-    background: var(--color-gray-dark-semitransparent);
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    font-family: Consola;
-    margin-top: 8px;
-    padding: 8px;
-    position: relative;
-  }
-
-  .command-line {
-    padding-right: 72px;
-  }
-
-  .command-copy-button {
-    border: 1px solid black;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 4px;
-    right: 12px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 60px;
-  }
-
-  .command-copy-alert {
+  .lesson-links,
+  .lesson-downloads {
+    align-items: center;
+    background-color: var(--color-blue-semitransparent);
     display: none;
-    background: var(--color-gray);
-    border-radius: 4px;
-    padding: 4px;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
     position: absolute;
-    right: 0;
-    top: -32px;
+    width: 100%;
+    z-index: 10;
   }
 
-  .command-copy-alert.is-active {
-    display: block;
+  .lesson-links.is-active,
+  .lesson-downloads.is-active {
+    display: flex;
+  }
+
+  .lesson-title {
+    font-weight: 600;
+    text-transform: none;
+  }
+
+  .small-image-container {
+    background: transparent;
+    height: 50px;
+    margin-bottom: 14px;
+    position: relative;
+    width: 50px;
+  }
+
+  .sticker-image {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
   }
 
   .sticker-image-container {
@@ -161,16 +102,61 @@
     width: 180px;
   }
 
-  .sticker-image {
-    height: 100%;
-    object-fit: contain;
-    width: 100%;
+  .sticker-holder-close {
+    right: -10px!important;
+    top: -8px!important;
   }
 
-  .sticker-holder-close {
-    border: 2px solid var(--color-gray);
-    right: -10px;
-    top: -10px;
+  /**
+  *  Buttons
+  */
+
+  .lesson-chit {
+    background: var(--color-blue-light-1);
+  }
+
+  .lesson-chit:after {
+    border-top-color: var(--color-blue-light-1);
+  }
+
+  .lesson-commands {
+    background: var(--color-blue-light-2);
+  }
+
+  .lesson-commands:after {
+    border-top-color: var(--color-blue-light-2);
+  }
+
+  .lesson-downloads-button {
+    background: var(--color-blue-light-1);
+  }
+
+  .lesson-downloads-button:after {
+    border-top-color: var(--color-blue-light-1);
+  }
+
+  .lesson-sticker {
+    background: var(--color-blue-light-3);
+  }
+
+  .lesson-sticker:after {
+    border-top-color: var(--color-blue-light-3);
+  }
+
+  .lesson-syllabus {
+    background: var(--color-blue-light-2);
+  }
+
+  .lesson-syllabus:after {
+    border-top-color: var(--color-blue-light-2);
+  }
+
+  .lesson-world {
+    background: var(--color-blue-light-3);
+  }
+
+  .lesson-world:after {
+    border-top-color: var(--color-blue-light-3);
   }
 }
 

@@ -5,7 +5,11 @@
    */
   --color-error--background: #ff00002b;
 
-  --color-blue: #0171BB;
+  --color-blue: rgba(1,113,187);
+  --color-blue-light-1: #1b7fc2;
+  --color-blue-light-2: #2f8bc7;
+  --color-blue-light-3: #4e9cd0;
+  --color-blue-semitransparent: rgba(1,113,187,0.3);
   --color-green: rgba(130,187,86);
   --color-green-semitransparent: rgba(130,187,86,0.2);
   --color-gray: #a89f9c;
@@ -16,7 +20,6 @@
   --color-pink-semitransparent: rgba(216,51,98,0.2);
   --color-yellow: rgba(236,167,64);
   --color-yellow-semitransparent: rgba(236,167,64,0.2);
-  --color-white-semitransparent: rgba(250,250,250,0.6);
 
   --easing-cubic: .3s cubic-bezier(.55, .055, .675, .19);
 

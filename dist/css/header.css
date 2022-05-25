@@ -1,10 +1,13 @@
 @import 'menu.css';
 @import 'variables.css';
 
-@media only screen {
+@media {
+
   .header.content {
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1500px;
   }
 
   .header-hamburger {
@@ -41,12 +44,14 @@
     transform: rotate(45deg);
   }
 
-  .header-hamburger-item.is-active:before, .header-hamburger-item.is-active:after {
+  .header-hamburger-item.is-active:before,
+  .header-hamburger-item.is-active:after {
     top: 0;
     transform: rotate(90deg);
   }
 
-  .header-hamburger-item:before, .header-hamburger-item:after {
+  .header-hamburger-item:before,
+  .header-hamburger-item:after {
     content: '';
     height: 3px;
     background: var(--color-gray-dark);
@@ -76,12 +81,12 @@
     padding: var(--indent-s);
   }
 
-  .logo-misja {
-    cursor: pointer;
-  }
-
   .logo-minecraft {
     height: var(--indent-xl);
+  }
+
+  .logo-misja {
+    cursor: pointer;
   }
 }
 

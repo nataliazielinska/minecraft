@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import activateCommandsBlock from './activateCommandsBlock.js';
+import activateDownloads from './activateDownloads.js';
 import appendElements from './appendElements.js';
 import elementFactory from './elementFactory.js';
 import lessonLinksVisibilitySwitcher from "./lessonLinksVisibilitySwitcher";
@@ -25,9 +26,11 @@ export default function generateLessons (e) {
   thisLessons.forEach(function (item, index) {
     let lessonHeaderItems = [];
     let lessonItems = [];
+    let lessonDownloads = [];
     const thisLessonHeader = elementFactory({tag: 'div', className: ['lesson-header', 'box-header']});
     const thisLessonContent = elementFactory({tag: 'div', className: ['lesson-content', 'box-content']});
     const thisLessonLinks = elementFactory({tag: 'div', className: ['lesson-links']});
+    const thisLessonDownloads = elementFactory({tag: 'div', className: ['lesson-downloads']});
     let thisLesson;
 
     if (!item.name) {
@@ -53,29 +56,18 @@ export default function generateLessons (e) {
           textNode: item.title
         }));
       }
+      appendElements(lessonHeaderItems, thisLessonHeader);
+      let smallImageContainer = elementFactory({tag: 'div', className: ['small-image-container', 'lesson-item']});
+      smallImageContainer.append(elementFactory({tag: 'img',
+        className: ['lesson-image'],
+        attr: [{'src': './lekcje/' + item.name + '-mini.png'}]}));
+      lessonItems.push(smallImageContainer);
       lessonItems.push(elementFactory({
-        tag: 'a',
-        className: ['lesson-world', 'lesson-item'],
-        textNode: 'Świat',
-        attr: [{'href': './lekcje/' + item.name + '.mcworld'}]
-      }));
-      lessonItems.push(elementFactory({
-        tag: 'a',
-        className: ['lesson-programs', 'lesson-item'],
-        textNode: 'Lekcja z gotowym programem',
-        attr: [{'href': './lekcje/' + item.name + '-gotowy.mcworld'}]
-      }));
-      lessonItems.push(elementFactory({
-        tag: 'a',
-        className: ['lesson-syllabus', 'lesson-item'],
-        textNode: 'Konspekt',
-        attr: [{'href': `./lekcje/${item.name}-konspekt.pdf`}, {'target': '_blank'}],
-      }));
-      lessonItems.push(elementFactory({
-        tag: 'a',
-        className: ['lesson-chit', 'lesson-item'],
-        textNode: "Karteczka",
-        attr: [{'href': './lekcje/' + item.name + '.pdf'}, {'target': '_blank'}]
+        tag: 'button',
+        className: ['lesson-downloads-button', 'lesson-item'],
+        textNode: "Do pobrania",
+        event: 'click',
+        handler: activateDownloads
       }));
       lessonItems.push(elementFactory({
         tag: 'button',
@@ -94,18 +86,53 @@ export default function generateLessons (e) {
           $(this).parent().siblings('.sticker-image-container').toggleClass('is-active');
         }
       }));
-      appendElements(lessonHeaderItems, thisLessonHeader);
       appendElements(lessonItems, thisLessonLinks);
       $(thisLessonLinks).append(elementFactory({
         tag: 'span',
         className: ['lesson-links-close', 'close-sign'],
         event: 'click',
         handler: function () {
-          $(this).parent('.lesson-links').toggleClass('is-active')
+          $(this).parent('.lesson-links').toggleClass('is-active');
+          $(this).parents('.lesson-links').siblings('.lesson-image').toggleClass('activated-links');
+        }
+      }));
+      smallImageContainer = elementFactory({tag: 'div', className: ['small-image-container', 'lesson-item']});
+      smallImageContainer.append(elementFactory({tag: 'img',
+        className: ['lesson-image'],
+        attr: [{'src': '././img/download-arrow.png'}]}));
+      lessonDownloads.push(smallImageContainer);
+      lessonDownloads.push(elementFactory({
+        tag: 'a',
+        className: ['lesson-world', 'lesson-item'],
+        textNode: 'Świat',
+        attr: [{'href': './lekcje/' + item.name + '.mcworld'}]
+      }));
+      lessonDownloads.push(elementFactory({
+        tag: 'a',
+        className: ['lesson-syllabus', 'lesson-item'],
+        textNode: 'Konspekt',
+        attr: [{'href': `./lekcje/${item.name}-konspekt.pdf`}, {'target': '_blank'}],
+      }));
+      lessonDownloads.push(elementFactory({
+        tag: 'a',
+        className: ['lesson-chit', 'lesson-item'],
+        textNode: "Karteczka",
+        attr: [{'href': './lekcje/' + item.name + '.pdf'}, {'target': '_blank'}]
+      }));
+      appendElements(lessonDownloads, thisLessonDownloads);
+
+      $(thisLessonDownloads).append(elementFactory({
+        tag: 'span',
+        className: ['lesson-downloads-close', 'close-sign'],
+        event: 'click',
+        handler: function () {
+          $(this).parent('.lesson-downloads').toggleClass('is-active');
+          $(this).parents('.lesson-downloads').siblings('.lesson-links').addClass('is-active');
         }
       }));
       $(thisLesson).append(thisLessonHeader);
       $(thisLessonContent).append(thisLessonLinks);
+      $(thisLessonContent).append(thisLessonDownloads);
       let stickerContainer = elementFactory({
         tag: 'div',
         className: ['sticker-image-container'],
@@ -126,7 +153,6 @@ export default function generateLessons (e) {
         event: 'click',
         handler: function () {
           $(this).parents('.sticker-image-container').toggleClass('is-active');
-
         }
       }));
       $(stickerContainer).append(stickerHolder);

@@ -2,23 +2,29 @@
 @import 'variables.css';
 
 @media {
-  .intro-box-header {
-    background-color: var(--color-pink);
-  }
 
-  .lessons-box-header {
-    background-color: var(--color-green);
+  .adds-box-content {
+    background-color: var(--color-yellow-semitransparent);
   }
 
   .adds-box-header {
     background-color: var(--color-yellow);
   }
 
-  .start-box-header-item {
-    font-size: 24px;
-    line-height: 60px;
-    padding: 0 24px;
-    text-align: start;
+  .intro-box-content {
+    background-color: var(--color-pink-semitransparent);
+  }
+
+  .intro-box-header {
+    background-color: var(--color-pink);
+  }
+
+  .lessons-box-content {
+    background-color: var(--color-green-semitransparent);
+  }
+
+  .lessons-box-header {
+    background-color: var(--color-green);
   }
 
   .start-box-content {
@@ -30,39 +36,73 @@
     padding: 16px;
   }
 
-  .intro-box-content {
-    background-color: var(--color-pink-semitransparent);
+  .start-box-image {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
   }
 
-  .lessons-box-content {
-    background-color: var(--color-green-semitransparent);
-  }
-
-  .adds-box-content {
-    background-color: var(--color-yellow-semitransparent);
-  }
-
-  .start-box-item-description {
-    margin: 0;
-    padding: 8px;
-    text-align: justify;
+  .start-box-img-container {
+    height: 70px;
+    margin-bottom: 16px;
+    margin-right: 8px;
+    width: 70px;
   }
 
   .start-box-item-description {
+    margin: 0 0 16px 0;
+    min-height: 75px;
     padding: 8px;
     text-align: justify;
   }
 
   .start-box-items-container {
+    align-items: flex-end;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    padding: 16px;
     width: 100%;
+  }
+
+  .start-box-header-item {
+    font-size: 24px;
+    line-height: 60px;
+    padding: 0 24px;
+    text-align: start;
   }
 
   .start-buttons-container {
     display: flex;
     flex-direction: column;
+  }
+
+  /**
+  *  Buttons
+  */
+
+  .adds-box-content button {
+    background: var(--color-yellow);
+  }
+
+  .adds-box-content button:after {
+    border-top-color: var(--color-yellow);
+  }
+
+  .intro-box-content button,
+  .intro-box-content a {
+    background: var(--color-pink);
+  }
+
+  .intro-box-content button:after,
+  .intro-box-content a:after {
+    border-top-color: var(--color-pink);
+  }
+
+  .lessons-box-content button {
+    background: var(--color-green);
+  }
+
+  .lessons-box-content button:after {
+    border-top-color: var(--color-green);
   }
 }
