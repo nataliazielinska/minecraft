@@ -1,10 +1,11 @@
 import menuItems from "./menuItems";
 import $ from 'jquery';
 import elementFactory from './elementFactory';
+import closeMenu from "./closeMenu";
 
 export default function generateMenu () {
 
-  let menu = elementFactory({tag: 'nav', className: ['header', 'menu']});
+  let menu = elementFactory({tag: 'div', className: ['header', 'menu']});
   let menuLinks = elementFactory({tag: 'ul', className: ['menu-links']});
 
   menuItems && menuItems.forEach(function (item, index) {
@@ -12,7 +13,9 @@ export default function generateMenu () {
       tag: 'li',
       className: ['menu-link'],
       event: 'click',
-      handler: toggleSubmenu
+      handler: function () {
+        $(this).toggleClass('is-active');
+      }
     });
     item.title && $(menuLink).append(elementFactory({tag: 'span', textNode: item.title}));
 
@@ -27,18 +30,14 @@ export default function generateMenu () {
     $(menuLinks).append(menuLink);
   });
   $(menu).append(menuLinks);
+
+  $(menu).append(elementFactory({
+    tag: 'div',
+    className: ['menu-shadow'],
+    event: 'click',
+    handler: closeMenu
+  }));
   return menu;
-}
-
-function toggleSubmenu () {
-  if($(this).children('.menu-sublinks.is-active').length) {
-    $(this).children('.menu-sublinks').removeClass('is-active');
-  } else {
-    $('.menu-sublinks.is-active').length && closeSubmenus();
-    $(this).children('.menu-sublinks').addClass('is-active');
-    $(window).on('click', windowClickHandler);
-  }
-
 }
 
 function closeSubmenus () {

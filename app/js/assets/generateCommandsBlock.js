@@ -25,7 +25,7 @@ export default function generateCommandsBlock (item) {
       textNode: commandsObject[key]
     }));
 
-    let commandCopyButton = elementFactory({tag: 'button', className: ['command-copy-button'], textNode: 'Kopiuj'});
+    let commandCopyButton = elementFactory({tag: 'button', className: ['button-secondary', 'command-copy-button'], textNode: 'Kopiuj'});
     commandCopyButton.append(elementFactory({tag: 'span', className: ['command-copy-alert'], textNode: 'Skopiowano'}));
     commandLineContainer.append(commandCopyButton);
     command.append(commandLineContainer);

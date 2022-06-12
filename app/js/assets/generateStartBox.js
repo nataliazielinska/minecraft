@@ -18,7 +18,7 @@ export default function generateStartBox (startBoxItems) {
   let startButtonsContainer = elementFactory({tag: 'div', className: ['start-buttons-container']});
   startBoxItems.link && startButtonsContainer.append(elementFactory({
     tag: 'a',
-    className: ['start-box-button'],
+    className: ['button-primary', 'start-box-button'],
     textNode: startBoxItems.link.textNode,
     attr: [{'href': startBoxItems.link.href}, {'target': '_blank'}]
   }));
@@ -26,7 +26,7 @@ export default function generateStartBox (startBoxItems) {
   startBoxItems.buttons.forEach(function (button) {
     startButtonsContainer.append(elementFactory({
       tag: 'button',
-      className: ['start-box-button', ...button.className],
+      className: ['button-primary', 'start-box-button', ...button.className],
       textNode: button.textNode,
       attr: button.attr,
       event: 'click',

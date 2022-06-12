@@ -4,8 +4,10 @@ import checkYear from "./checkYear";
 import elementFactory from './elementFactory';
 import generateLessons from './generateLessons';
 import generateStartBox from "./generateStartBox";
+import closeMenu from "./closeMenu";
 
 export default function showStartScreen () {
+  $('html').hasClass('activated-menu') && closeMenu();
   $('#app').empty();
   $('#app').append(elementFactory({tag: 'div', className: ['start-screen-container', 'boxes-container']}));
 
@@ -16,7 +18,12 @@ export default function showStartScreen () {
       description: 'Najważniejsze informacje o wersji edukacyjnej Minecraft oraz podstawowe komendy używane podczas lecji',
     },
     link: {textNode: 'Wprowadzenie', href: '././wprowadzenie.pdf'},
-    buttons: [{className: ['start-box-commands', 'intro-box-commands'], textNode: 'Komendy', handler: activateCommandsBlock, commands: basicCommands}],
+    buttons: [{
+      className: ['start-box-commands', 'intro-box-commands'],
+      textNode: 'Komendy',
+      handler: activateCommandsBlock,
+      commands: basicCommands
+    }],
     image: {className: 'intro-box-image', src: '././img/intro.png'}
   }
 
@@ -37,8 +44,8 @@ export default function showStartScreen () {
       description: 'Lekcje nie wykorzystywane w pakiecie roku szkolnego',
     },
     buttons: [
-      {className: 'lessons-year', textNode: 'Lekcje wszystkie', attr: [{'data-year': 'all'}], handler: generateLessons},
-      {className: 'lessons-year', textNode: 'Ferie', attr: [{'data-year': 'ferie'}], handler: generateLessons}
+      {className: ['lessons-year'], textNode: 'Lekcje wszystkie', attr: [{'data-year': 'all'}], handler: generateLessons},
+      {className: ['lessons-year'], textNode: 'Ferie', attr: [{'data-year': 'ferie'}], handler: generateLessons}
     ],
     image: {className: 'adds-box-image', src: '././img/adds.png'}
   }

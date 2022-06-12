@@ -36,20 +36,16 @@ const menuItems = [
     ]
   },
   {
-    name: 'minecraft-version',
-    title: 'Wersja Minecrafta',
+    name: 'download',
+    title: 'Do pobrania',
     headerSubitems: [
       {
-        link: 'link31',
-        linkName: 'nazwa31'
+        link: 'https://education.minecraft.net/en-us/get-started/download',
+        linkName: 'Minecraft Education Edition'
       },
       {
-        link: 'link32',
-        linkName: 'nazwa32'
-      },
-      {
-        link: 'link33',
-        linkName: 'nazwa33'
+        link: 'https://educommunity.minecraft.net/hc/en-us/articles/360047116652',
+        linkName: 'Classroom Mode'
       }
     ]
   }

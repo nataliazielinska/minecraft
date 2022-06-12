@@ -64,14 +64,14 @@ export default function generateLessons (e) {
       lessonItems.push(smallImageContainer);
       lessonItems.push(elementFactory({
         tag: 'button',
-        className: ['lesson-downloads-button', 'lesson-item'],
+        className: ['button-primary', 'lesson-downloads-button', 'lesson-item'],
         textNode: "Do pobrania",
         event: 'click',
         handler: activateDownloads
       }));
       lessonItems.push(elementFactory({
         tag: 'button',
-        className: ['lesson-commands', 'lesson-item'],
+        className: ['button-primary', 'lesson-commands', 'lesson-item'],
         textNode: 'Komendy',
         event: 'click',
         handler: activateCommandsBlock
@@ -79,7 +79,7 @@ export default function generateLessons (e) {
       lessonItems.push(generateCommandsBlock(item.commands));
       lessonItems.push(elementFactory({
         tag: 'button',
-        className: ['lesson-sticker', 'lesson-item'],
+        className: ['button-primary', 'lesson-sticker', 'lesson-item'],
         textNode: 'Wlepa',
         event: 'click',
         handler: function (e) {
@@ -103,19 +103,19 @@ export default function generateLessons (e) {
       lessonDownloads.push(smallImageContainer);
       lessonDownloads.push(elementFactory({
         tag: 'a',
-        className: ['lesson-world', 'lesson-item'],
+        className: ['button-primary', 'lesson-world', 'lesson-item'],
         textNode: 'Świat',
         attr: [{'href': './lekcje/' + item.name + '.mcworld'}]
       }));
       lessonDownloads.push(elementFactory({
         tag: 'a',
-        className: ['lesson-syllabus', 'lesson-item'],
+        className: ['button-primary', 'lesson-syllabus', 'lesson-item'],
         textNode: 'Konspekt',
         attr: [{'href': `./lekcje/${item.name}-konspekt.pdf`}, {'target': '_blank'}],
       }));
       lessonDownloads.push(elementFactory({
         tag: 'a',
-        className: ['lesson-chit', 'lesson-item'],
+        className: ['button-primary', 'lesson-chit', 'lesson-item'],
         textNode: "Karteczka",
         attr: [{'href': './lekcje/' + item.name + '.pdf'}, {'target': '_blank'}]
       }));

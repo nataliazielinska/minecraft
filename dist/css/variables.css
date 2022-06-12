@@ -5,6 +5,7 @@
    */
   --color-error--background: #ff00002b;
 
+  --color-black-semitransparent: rgba(0,0,0,0.5);
   --color-blue: rgba(1,113,187);
   --color-blue-light-1: #1b7fc2;
   --color-blue-light-2: #2f8bc7;
@@ -14,12 +15,15 @@
   --color-green-semitransparent: rgba(130,187,86,0.2);
   --color-gray: #a89f9c;
   --color-gray-dark: #787271;
+  --color-gray-very-dark: #5e5d5d;
   --color-gray-dark-semitransparent: rgba(120,114,113,0.2);
   --color-gray-light: #e3e0df;
   --color-pink: rgba(216,51,98);
   --color-pink-semitransparent: rgba(216,51,98,0.2);
   --color-yellow: rgba(236,167,64);
   --color-yellow-semitransparent: rgba(236,167,64,0.2);
+  --color-white: #fff;
+  --color-white-semitransparent: rgba(255,255,255,0.8);
 
   --easing-cubic: .3s cubic-bezier(.55, .055, .675, .19);
 
