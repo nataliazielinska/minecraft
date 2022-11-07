@@ -60,7 +60,7 @@ export default function generateLessons (e) {
       let smallImageContainer = elementFactory({tag: 'div', className: ['small-image-container', 'lesson-item']});
       smallImageContainer.append(elementFactory({tag: 'img',
         className: ['lesson-image'],
-        attr: [{'src': './lekcje/' + item.name + '-mini.png'}]}));
+        attr: [{'src': '././img/intro.png'}]}));g
       lessonItems.push(smallImageContainer);
       lessonItems.push(elementFactory({
         tag: 'button',
