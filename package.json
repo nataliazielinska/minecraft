@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "webpack": "node ./node_modules/webpack/bin/webpack.js watch"
+    "watch": "node ./node_modules/webpack/bin/webpack.js watch",
+    "prod": "webpack --config ./production.webpack.config.js",
+    "dev": "webpack --config ./webpack.config.js"
   },
   "devDependencies": {
     "imports-loader": "^3.1.1",
