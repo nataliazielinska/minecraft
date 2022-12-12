@@ -1,11 +1,10 @@
-import $ from "jquery";
+import {cssClasses} from "./cssClasses";
 
 export default function copyCommand() {
-  let copyText = $(this).children('.command-line');
+  navigator.clipboard.writeText(this.querySelector('.command-line').textContent);
 
-  navigator.clipboard.writeText(copyText.text());
-  $(this).find('.command-copy-alert').addClass('is-active');
+  this.querySelector('.command-copy-alert')?.classList.add(cssClasses.isActive);
   setTimeout(() => {
-    $('.command-copy-alert').removeClass('is-active')
+    this.querySelector('.command-copy-alert')?.classList.remove(cssClasses.isActive);
   }, 2000);
 }

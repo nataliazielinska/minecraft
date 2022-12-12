@@ -1,8 +1,6 @@
-import $ from 'jquery';
 import closeMenu from './closeMenu';
+import {dataTags} from "./dataTags";
 
 export default function activateMenu () {
-  $('.header-hamburger').on('click', function handleClick() {
-    closeMenu();
-  });
+  document.querySelector(dataTags.headerHamburger).addEventListener('click', closeMenu);
 }

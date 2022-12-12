@@ -1,3 +1,4 @@
+import {cssClasses} from "./cssClasses";
 import generateLessons from "./generateLessons";
 
 const yearAr = [];
@@ -11,14 +12,14 @@ export default function checkYear () {
     return self.indexOf(value) === index;
   }
 
-  let unique = yearAr.filter(onlyUnique);
+  const unique = yearAr.filter(onlyUnique);
   unique.sort();
 
-  let yearButtons = [];
+  const yearButtons = [];
   unique.forEach(function (item) {
     if (item!='ferie') {
-      let yearButton = {
-        className: ['button-primary', 'lessons-year'],
+      const yearButton = {
+        className: [cssClasses.buttonPrimary, cssClasses.lessonsYear],
         textNode: `Rok ${item}`,
         attr: [{'data-year': item}],
         handler: generateLessons

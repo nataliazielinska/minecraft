@@ -1,50 +1,49 @@
 import menuItems from "./menuItems";
-import $ from 'jquery';
 import elementFactory from './elementFactory';
 import closeMenu from "./closeMenu";
+import {tags} from "./tags";
+import {cssClasses} from "./cssClasses";
 
 export default function generateMenu () {
 
-  let menu = elementFactory({tag: 'div', className: ['header', 'menu']});
-  let menuLinks = elementFactory({tag: 'ul', className: ['menu-links']});
+  const menu = elementFactory({
+    tag: tags.div,
+    className: [cssClasses.header, cssClasses.menu],
+    attr: [{'data-container':'menu'}]});
+  const menuLinks = elementFactory({tag: tags.ul, className: [cssClasses.menuLinks]});
 
   menuItems && menuItems.forEach(function (item, index) {
-    let menuLink = elementFactory({
-      tag: 'li',
-      className: ['menu-link'],
+    const menuLink = elementFactory({
+      tag: tags.li,
+      className: [cssClasses.menuLink],
+      attr: [{'data-container':'menu-link'}],
       event: 'click',
       handler: function () {
-        $(this).toggleClass('is-active');
+        this?.classList.toggle(cssClasses.isActive);
       }
     });
-    item.title && $(menuLink).append(elementFactory({tag: 'span', textNode: item.title}));
+    item.title && menuLink.append(elementFactory({tag: tags.span, textNode: item.title}));
 
-    let menuSublinks = elementFactory({tag: 'ul', className: ['menu-sublinks']});
+    const menuSublinks = elementFactory({tag: tags.ul, className: [cssClasses.menuSublinks]});
     item.headerSubitems && item.headerSubitems.forEach(function (subItem) {
-      let menuSubitem = elementFactory({tag: 'li', className: ['menu-sublink']});
-      subItem.linkName && $(menuSubitem).append(elementFactory({tag: 'a', textNode: subItem.linkName, attr: [{'href': subItem.link}, {'target': '_blank'}]}));
-      $(menuSublinks).append(menuSubitem);
+      const menuSubitem = elementFactory({tag: tags.li, className: [cssClasses.menuSublink]});
+      subItem.linkName && menuSubitem.append(elementFactory({
+        tag: tags.a,
+        textNode: subItem.linkName,
+        attr: [{'href': subItem.link}, {'target': '_blank'}]}));
+      menuSublinks.append(menuSubitem);
     });
 
-    $(menuLink).append(menuSublinks);
-    $(menuLinks).append(menuLink);
+    menuLink.append(menuSublinks);
+    menuLinks.append(menuLink);
   });
-  $(menu).append(menuLinks);
+  menu.append(menuLinks);
 
-  $(menu).append(elementFactory({
-    tag: 'div',
-    className: ['menu-shadow'],
+  menu.append(elementFactory({
+    tag: tags.div,
+    className: [cssClasses.menuShadow],
     event: 'click',
     handler: closeMenu
   }));
   return menu;
-}
-
-function closeSubmenus () {
-    $('.menu-sublinks.is-active').removeClass('is-active');
-    $(window).off('click', windowClickHandler);
-}
-
-function windowClickHandler (event) {
-  !$(event.target).parents('.menu-link').length && closeSubmenus();
 }

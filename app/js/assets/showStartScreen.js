@@ -1,58 +1,65 @@
-import $ from 'jquery';
 import activateCommandsBlock from "./activateCommandsBlock";
 import checkYear from "./checkYear";
 import elementFactory from './elementFactory';
 import generateLessons from './generateLessons';
 import generateStartBox from "./generateStartBox";
 import closeMenu from "./closeMenu";
+import {tags} from "./tags";
+import {cssClasses} from "./cssClasses";
 
 export default function showStartScreen () {
-  $('html').hasClass('activated-menu') && closeMenu();
-  $('#app').empty();
-  $('#app').append(elementFactory({tag: 'div', className: ['start-screen-container', 'boxes-container']}));
+
+  const tagHtmlElement = document.getElementsByTagName(tags.html)[0];
+  tagHtmlElement.classList.contains(cssClasses.activatedMenu) && closeMenu();
+
+  const idAppElement = document.getElementById('app');
+  idAppElement.innerHTML = '';
+  idAppElement.appendChild(elementFactory({
+    tag: tags.div,
+    className: [cssClasses.startScreenContainer, cssClasses.boxesContainer]
+  }));
 
   const introBox = {
-    header: {className: 'intro-box-header', textNode: 'Wprowadzenie'},
+    header: {className: cssClasses.introBoxHeader, textNode: 'Wprowadzenie'},
     content: {
-      className: 'intro-box-content',
+      className: cssClasses.introBoxContent,
       description: 'Najważniejsze informacje o wersji edukacyjnej Minecraft oraz podstawowe komendy używane podczas lecji',
     },
     link: {textNode: 'Wprowadzenie', href: '././wprowadzenie.pdf'},
     buttons: [{
-      className: ['start-box-commands', 'intro-box-commands'],
+      className: [cssClasses.startBoxCommands, 'intro-box-commands'],
       textNode: 'Komendy',
       handler: activateCommandsBlock,
       commands: basicCommands
     }],
-    image: {className: 'intro-box-image', src: '././img/intro.png'}
+    image: {className: cssClasses.introBoxImage, src: './img/intro.png'}
   }
 
   const lessonsBox = {
-    header: {className: 'lessons-box-header', textNode: 'Lekcje'},
+    header: {className: cssClasses.lessonsBoxHeader, textNode: 'Lekcje'},
     content: {
-      className: 'lessons-box-content',
+      className: cssClasses.lessonsBoxContent,
       description: 'Lekcje z podziałem na rok nauki',
     },
     buttons: checkYear(),
-    image: {className: 'lessons-box-image', src: '././img/lessons.png'}
+    image: {className: cssClasses.lessonsBoxImage, src: './img/lessons.png'}
   }
 
   const addsBox = {
-    header: {className: 'adds-box-header', textNode: 'Dodatkowo'},
+    header: {className: cssClasses.addsBoxHeader, textNode: 'Dodatkowo'},
     content: {
-      className: 'adds-box-content',
+      className: cssClasses.addsBoxContent,
       description: 'Lekcje nie wykorzystywane w pakiecie roku szkolnego',
     },
     buttons: [
-      {className: ['lessons-year'], textNode: 'Lekcje wszystkie', attr: [{'data-year': 'all'}], handler: generateLessons},
-      {className: ['lessons-year'], textNode: 'Ferie', attr: [{'data-year': 'ferie'}], handler: generateLessons}
+      {className: [cssClasses.lessonsYear], textNode: 'Lekcje wszystkie', attr: [{'data-year': 'all'}], handler: generateLessons},
+      {className: [cssClasses.lessonsYear], textNode: 'Ferie', attr: [{'data-year': 'ferie'}], handler: generateLessons}
     ],
-    image: {className: 'adds-box-image', src: '././img/adds.png'}
+    image: {className: cssClasses.addsBoxImage, src: './img/adds.png'}
   }
 
-  $('.start-screen-container').append(generateStartBox(introBox));
-  $('.start-screen-container').append(generateStartBox(lessonsBox));
-  $('.start-screen-container').append(generateStartBox(addsBox));
-
+  const classStartScreenContainerElement = document.getElementsByClassName(cssClasses.startScreenContainer)[0];
+  classStartScreenContainerElement.appendChild(generateStartBox(introBox));
+  classStartScreenContainerElement.appendChild(generateStartBox(lessonsBox));
+  classStartScreenContainerElement.appendChild(generateStartBox(addsBox));
 }
-

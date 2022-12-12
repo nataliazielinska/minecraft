@@ -1,67 +1,99 @@
-import $ from 'jquery';
 import activateCommandsBlock from './activateCommandsBlock.js';
 import activateDownloads from './activateDownloads.js';
 import appendElements from './appendElements.js';
 import elementFactory from './elementFactory.js';
 import lessonLinksVisibilitySwitcher from "./lessonLinksVisibilitySwitcher";
 import generateCommandsBlock from "./generateCommandsBlock";
+import {cssClasses} from "./cssClasses";
+import {tags} from "./tags";
+import {dataTags} from "./dataTags";
 
-/**
- *
- * @param e
- */
 export default function generateLessons (e) {
   const thisYear = e.currentTarget.dataset.year;
   let thisLessons = [];
 
-  $('.start-screen-container').replaceWith(elementFactory({tag: 'div', className: ['lessons', 'boxes-container']}));
+  const classStartScreenContainerElement = document.getElementsByClassName(cssClasses.startScreenContainer)[0];
+  classStartScreenContainerElement.replaceWith(elementFactory({
+    tag: tags.div,
+    className: [cssClasses.lessons, cssClasses.boxesContainer],
+    attr: [{'data-container':'lessons'}]
+  }));
 
-  lessons.forEach(function (item){
-    if (item.year == thisYear)
-      thisLessons.push(item);
-    else if (thisYear == 'all')
-      thisLessons = [...lessons]
-  });
+  if (thisYear == 'all') {
+    thisLessons = [...lessons]
+  } else {
+    thisLessons = lessons.filter(item => item.year == thisYear)
+  }
 
   thisLessons.forEach(function (item, index) {
-    let lessonHeaderItems = [];
-    let lessonItems = [];
-    let lessonDownloads = [];
-    const thisLessonHeader = elementFactory({tag: 'div', className: ['lesson-header', 'box-header']});
-    const thisLessonContent = elementFactory({tag: 'div', className: ['lesson-content', 'box-content']});
-    const thisLessonLinks = elementFactory({tag: 'div', className: ['lesson-links']});
-    const thisLessonDownloads = elementFactory({tag: 'div', className: ['lesson-downloads']});
+    const lessonHeaderItems = [];
+    const lessonItems = [];
+    const lessonDownloads = [];
+    const thisLessonHeader = elementFactory({
+      tag: tags.div,
+      className: [cssClasses.lessonHeader,
+        cssClasses.boxHeader]
+    });
+    const thisLessonContent = elementFactory({
+      tag: tags.div,
+      className: [cssClasses.lessonContent, cssClasses.boxContent],
+      attr: [{'data-container':'lesson-content'}]
+    });
+    const thisLessonLinks = elementFactory({
+      tag: tags.div,
+      className: [cssClasses.lessonLinks],
+      attr: [{'data-container':'lesson-links'}]
+    });
+    const thisLessonDownloads = elementFactory({
+      tag: tags.div,
+      className: [cssClasses.lessonDownloads],
+      attr: [{'data-container':'lesson-downloads'}]
+    });
     let thisLesson;
 
     if (!item.name) {
-      thisLesson = elementFactory({tag: 'div', className: ['lesson-error', 'lesson-name-error'], textNode: 'Błąd w pakiecie: Brak nazwy lekcji!'});
+      thisLesson = elementFactory({
+        tag: tags.div,
+        className: [cssClasses.lessonError, cssClasses.lessonNameError],
+        textNode: 'Błąd w pakiecie: Brak nazwy lekcji!'
+      });
     } else {
-      thisLesson = elementFactory({tag: 'div', className: ['lesson', 'box-container'], attr: [{'data-lesson-name': item.name}]});
+      thisLesson = elementFactory({
+        tag: tags.div,
+        className: [cssClasses.lesson, cssClasses.boxContainer],
+        attr: [{'data-lesson-name': item.name}]
+      });
       if (item.year == thisYear) lessonHeaderItems.push(elementFactory({
-        tag: 'p',
-        className: ['lesson-name', 'lesson-header-item', 'box-header-item'],
+        tag: tags.p,
+        className: [cssClasses.lessonName, cssClasses.lessonHeaderItem, cssClasses.boxHeaderItem],
         textNode: `Lekcja ${index + 1}`
       }));
 
       if (!item.title) {
         lessonHeaderItems.push(elementFactory({
-          tag: 'p',
-          className: ['lesson-error', 'lesson-title-error'],
+          tag: tags.p,
+          className: [cssClasses.lessonError, cssClasses.lessonTitleError],
           textNode: 'Błąd w pakiecie: Brak tytułu lekcji!'
         }));
       } else {
         lessonHeaderItems.push(elementFactory({
-          tag: 'p',
-          className: ['lesson-title', 'lesson-header-item', 'box-header-item'],
+          tag: tags.p,
+          className: [cssClasses.lessonTitle, cssClasses.lessonHeaderItem, cssClasses.boxHeaderItem],
           textNode: item.title
         }));
       }
       appendElements(lessonHeaderItems, thisLessonHeader);
-      let smallImageContainer = elementFactory({tag: 'div', className: ['small-image-container', 'lesson-item']});
-      smallImageContainer.append(elementFactory({tag: 'img',
-        className: ['lesson-image'],
-        attr: [{'src': '././img/intro.png'}]}));g
+
+      let smallImageContainer = elementFactory({
+        tag: tags.div,
+        className: [cssClasses.smallImageContainer, cssClasses.lessonItem]
+      });
+      smallImageContainer.append(elementFactory({
+        tag: tags.img,
+        className: [cssClasses.lessonImage],
+        attr: [{'src': './img/intro.png'}, {'data-image': 'intro-book'}]}));
       lessonItems.push(smallImageContainer);
+
       lessonItems.push(elementFactory({
         tag: 'button',
         className: ['button-primary', 'lesson-downloads-button', 'lesson-item'],
@@ -70,101 +102,117 @@ export default function generateLessons (e) {
         handler: activateDownloads
       }));
       lessonItems.push(elementFactory({
-        tag: 'button',
-        className: ['button-primary', 'lesson-commands', 'lesson-item'],
+        tag: tags.button,
+        className: [cssClasses.buttonPrimary, cssClasses.lessonCommands, cssClasses.lessonItem],
         textNode: 'Komendy',
         event: 'click',
         handler: activateCommandsBlock
       }));
       lessonItems.push(generateCommandsBlock(item.commands));
+
       lessonItems.push(elementFactory({
-        tag: 'button',
-        className: ['button-primary', 'lesson-sticker', 'lesson-item'],
+        tag: tags.button,
+        className: [cssClasses.buttonPrimary, cssClasses.lessonSticker, cssClasses.lessonItem],
         textNode: 'Wlepa',
         event: 'click',
         handler: function (e) {
-          $(this).parent().siblings('.sticker-image-container').toggleClass('is-active');
+          this.closest(dataTags.lessonContent)
+            ?.querySelector(dataTags.stickerImageContainer)?.classList.toggle(cssClasses.isActive);
         }
       }));
       appendElements(lessonItems, thisLessonLinks);
-      $(thisLessonLinks).append(elementFactory({
-        tag: 'span',
-        className: ['lesson-links-close', 'close-sign'],
+
+      thisLessonLinks.append(elementFactory({
+        tag: tags.span,
+        className: [cssClasses.lessonLinksClose, cssClasses.closeSign],
         event: 'click',
         handler: function () {
-          $(this).parent('.lesson-links').toggleClass('is-active');
-          $(this).parents('.lesson-links').siblings('.lesson-image').toggleClass('activated-links');
+          this.closest(tags.div)?.classList.toggle(cssClasses.isActive);
+          this.closest(dataTags.lessonContent)
+            ?.querySelector(dataTags.imageBackground)?.classList.toggle(cssClasses.activatedLinks);
         }
       }));
-      smallImageContainer = elementFactory({tag: 'div', className: ['small-image-container', 'lesson-item']});
-      smallImageContainer.append(elementFactory({tag: 'img',
-        className: ['lesson-image'],
-        attr: [{'src': '././img/download-arrow.png'}]}));
+
+      smallImageContainer = elementFactory({
+        tag: tags.div,
+        className: [cssClasses.smallImageContainer, cssClasses.lessonItem]
+      });
+      smallImageContainer.append(elementFactory({
+        tag: tags.img,
+        className: [cssClasses.lessonImage],
+        attr: [{'src': './img/download-arrow.png'}, {'data-image': 'download-arrow'}]
+      }));
+
       lessonDownloads.push(smallImageContainer);
       lessonDownloads.push(elementFactory({
-        tag: 'a',
-        className: ['button-primary', 'lesson-world', 'lesson-item'],
+        tag: tags.a,
+        className: [cssClasses.buttonPrimary, cssClasses.lessonWorld, cssClasses.lessonItem],
         textNode: 'Świat',
-        attr: [{'href': './lekcje/' + item.name + '.mcworld'}]
+        attr: [{'href': `./lekcje/${item.name}.mcworld`}]
       }));
       lessonDownloads.push(elementFactory({
-        tag: 'a',
-        className: ['button-primary', 'lesson-syllabus', 'lesson-item'],
+        tag: tags.a,
+        className: [cssClasses.buttonPrimary, cssClasses.lessonSyllabus, cssClasses.lessonItem],
         textNode: 'Konspekt',
         attr: [{'href': `./lekcje/${item.name}-konspekt.pdf`}, {'target': '_blank'}],
       }));
       lessonDownloads.push(elementFactory({
-        tag: 'a',
-        className: ['button-primary', 'lesson-chit', 'lesson-item'],
+        tag: tags.a,
+        className: [cssClasses.buttonPrimary, cssClasses.lessonChit, cssClasses.lessonItem],
         textNode: "Karteczka",
-        attr: [{'href': './lekcje/' + item.name + '.pdf'}, {'target': '_blank'}]
+        attr: [{'href': `./lekcje/${item.name}.pdf`}, {'target': '_blank'}]
       }));
       appendElements(lessonDownloads, thisLessonDownloads);
 
-      $(thisLessonDownloads).append(elementFactory({
-        tag: 'span',
-        className: ['lesson-downloads-close', 'close-sign'],
+      thisLessonDownloads.append(elementFactory({
+        tag: tags.span,
+        className: [cssClasses.lessonDownloadsClose, cssClasses.closeSign],
         event: 'click',
         handler: function () {
-          $(this).parent('.lesson-downloads').toggleClass('is-active');
-          $(this).parents('.lesson-downloads').siblings('.lesson-links').addClass('is-active');
+          this.closest(tags.div)?.classList.toggle(cssClasses.isActive);
+          this.closest(dataTags.lessonContent)
+            ?.querySelector(dataTags.lessonLinks)?.classList.add(cssClasses.isActive);
         }
       }));
-      $(thisLesson).append(thisLessonHeader);
-      $(thisLessonContent).append(thisLessonLinks);
-      $(thisLessonContent).append(thisLessonDownloads);
-      let stickerContainer = elementFactory({
-        tag: 'div',
-        className: ['sticker-image-container'],
+      thisLesson.append(thisLessonHeader);
+      thisLessonContent.append(thisLessonLinks);
+      thisLessonContent.append(thisLessonDownloads);
+
+      const stickerContainer = elementFactory({
+        tag: tags.div,
+        className: [cssClasses.stickerImageContainer],
+        attr: [{'data-container':'sticker-image-container'}],
         event: 'click',
         handler: function (e) {
           e.stopPropagation();
         }
       });
-      let stickerHolder = elementFactory({tag: 'div', className: ['sticker-image-holder']});
-      $(stickerHolder).append(elementFactory({
-        tag: 'img',
-        className: ['sticker-image', 'lesson-image'],
-        attr: [{'src': './lekcje/' + item.name + '-wlepa.png'}]
+      const stickerHolder = elementFactory({tag: tags.div, className: [cssClasses.stickerImageHolder]});
+      stickerHolder.append(elementFactory({
+        tag: tags.img,
+        className: [cssClasses.stickerImage, cssClasses.lessonImage],
+        attr: [{'src': `./lekcje/${item.name}-wlepa.png`}, {'data-image': 'sticker'}]
       }));
-      $(stickerHolder).append(elementFactory({
-        tag: 'span',
-        className: ['sticker-holder-close', 'close-sign'],
+      stickerHolder.append(elementFactory({
+        tag: tags.span,
+        className: [cssClasses.stickerHolderClose, cssClasses.closeSign],
         event: 'click',
         handler: function () {
-          $(this).parents('.sticker-image-container').toggleClass('is-active');
+          this.closest(dataTags.stickerImageContainer)?.classList.toggle(cssClasses.isActive);
         }
       }));
-      $(stickerContainer).append(stickerHolder);
-      $(thisLessonContent).append(stickerContainer);
-      $(thisLessonContent).append(elementFactory({
-        tag: 'img',
-        className: ['lesson-image'],
-        attr: [{'src': './lekcje/' + item.name + '.png'}]
+      stickerContainer.append(stickerHolder);
+      thisLessonContent.append(stickerContainer);
+
+      thisLessonContent.append(elementFactory({
+        tag: tags.img,
+        className: [cssClasses.lessonImage],
+        attr: [{'src': `./lekcje/${item.name}.png`}, {'data-image': 'background'}]
       }));
-      $(thisLesson).append(thisLessonContent);
+      thisLesson.append(thisLessonContent);
     }
-    $('.lessons').append(thisLesson);
+    const lessonsElement = document?.querySelector(dataTags.lessons);
+    lessonsElement.append(thisLesson);
   });
   lessonLinksVisibilitySwitcher();
 }

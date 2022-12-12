@@ -1,9 +1,10 @@
-import $ from "jquery";
+import {cssClasses} from "./cssClasses";
+import {dataTags} from "./dataTags";
+import {tags} from "./tags";
 
 export default function closeMenu () {
-  $(this).toggleClass('is-active');
-  $('.header-hamburger-item').toggleClass('is-active');
-  $('.menu').toggleClass('is-active');
-  $('.menu-link').removeClass('is-active');
-  $('html').toggleClass('activated-menu');
+  document.querySelector(dataTags.headerHamburgerItem)?.classList.toggle(cssClasses.isActive);
+  document.querySelector(dataTags.menu)?.classList.toggle(cssClasses.isActive);
+  document.querySelector(dataTags.menuLink)?.classList.remove(cssClasses.isActive);
+  document.querySelector(tags.html)?.classList.toggle(cssClasses.activatedMenu);
 }

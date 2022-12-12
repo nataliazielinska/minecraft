@@ -1,11 +1,11 @@
-import $ from 'jquery';
 import activateMenu from './assets/activateMenu.js';
 import generateMenu from './assets/generateMenu.js';
 import showStartScreen from './assets/showStartScreen.js';
+import {dataTags} from "./assets/dataTags";
 
-$( document ).ready(function() {
-  $('.header.content').append(generateMenu());
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(dataTags.headerContent).append(generateMenu());
   showStartScreen();
-  $('.logo-misja').click(showStartScreen);
+  document.querySelector(dataTags.imageLogo).addEventListener('click', showStartScreen);
   activateMenu ();
 });

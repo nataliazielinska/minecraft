@@ -1,32 +1,45 @@
-import $ from 'jquery';
 import elementFactory from './elementFactory';
 import generateCommandsBlock from "./generateCommandsBlock";
+import {tags} from "./tags";
+import {cssClasses} from "./cssClasses";
 
 export default function generateStartBox (startBoxItems) {
-  let startBox = elementFactory({tag: 'div', className: ['start-box', 'box-container']});
-  let startBoxHeader = elementFactory({tag: 'div', className: ['box-header', startBoxItems.header.className]});
-  $(startBoxHeader).append(elementFactory({tag: 'p', className: ['box-header-item', 'start-box-header-item'], textNode: startBoxItems.header.textNode}));
+  const startBox = elementFactory({tag: tags.div, className: [cssClasses.startBox, cssClasses.boxContainer]});
+  const startBoxHeader = elementFactory({
+    tag: tags.div,
+    className: [cssClasses.boxHeader, startBoxItems.header.className]
+  });
+
+  startBoxHeader.append(elementFactory({
+    tag: tags.p,
+    className: [cssClasses.boxHeaderItem, cssClasses.startBoxHeaderItem],
+    textNode: startBoxItems.header.textNode
+  }));
   startBox.append(startBoxHeader);
-  let startBoxContent = elementFactory({tag: 'div', className: ['box-content', 'start-box-content', startBoxItems.content.className ]});
+
+  const startBoxContent = elementFactory({
+    tag: tags.div,
+    className: [cssClasses.boxContent, cssClasses.startBoxContent, startBoxItems.content.className ]
+  });
   startBoxContent.append(elementFactory({
-    tag: 'p',
-    className: ['start-box-item-description'],
+    tag: tags.p,
+    className: [cssClasses.startBoxItemDescription],
     textNode: startBoxItems.content.description,
   }));
 
-  let startBoxItemsContainer = elementFactory({tag: 'div', className: ['start-box-items-container']});
-  let startButtonsContainer = elementFactory({tag: 'div', className: ['start-buttons-container']});
+  const startBoxItemsContainer = elementFactory({tag: tags.div, className: [cssClasses.startBoxItemsContainer]});
+  const startButtonsContainer = elementFactory({tag: tags.div, className: [cssClasses.startButtonsContainer]});
   startBoxItems.link && startButtonsContainer.append(elementFactory({
-    tag: 'a',
-    className: ['button-primary', 'start-box-button'],
+    tag: tags.a,
+    className: [cssClasses.buttonPrimary, cssClasses.startBoxButton],
     textNode: startBoxItems.link.textNode,
     attr: [{'href': startBoxItems.link.href}, {'target': '_blank'}]
   }));
 
   startBoxItems.buttons.forEach(function (button) {
     startButtonsContainer.append(elementFactory({
-      tag: 'button',
-      className: ['button-primary', 'start-box-button', ...button.className],
+      tag: tags.button,
+      className: [cssClasses.buttonPrimary, cssClasses.startBoxButton, ...button.className],
       textNode: button.textNode,
       attr: button.attr,
       event: 'click',
@@ -36,10 +49,10 @@ export default function generateStartBox (startBoxItems) {
   })
   startBoxItemsContainer.append(startButtonsContainer);
 
-  let startImgContainer = elementFactory({tag: 'div', className: ['start-box-img-container']});
+  const startImgContainer = elementFactory({tag: tags.div, className: [cssClasses.startBoxImgContainer]});
   startImgContainer.append(elementFactory({
-    tag: 'img',
-    className: ['start-box-image', startBoxItems.image.className],
+    tag: tags.img,
+    className: [cssClasses.startBoxImage, startBoxItems.image.className],
     attr: [{'src': startBoxItems.image.src}]
   }));
   startBoxItemsContainer.append(startImgContainer);

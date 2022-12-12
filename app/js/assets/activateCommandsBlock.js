@@ -1,13 +1,9 @@
-import $ from "jquery";
+import {cssClasses} from "./cssClasses";
+import {dataTags} from "./dataTags";
 
 export default function activateCommandsBlock (e) {
   e.stopPropagation();
-  $('body').addClass('modal-commands-active');
-  $(e.currentTarget)
-    .siblings('.commands-container')
-    .addClass('is-active');
-  $(e.currentTarget)
-    .parents('.lesson-content') && $(e.currentTarget)
-    .parents('.lesson-content')
-    .addClass('activated-commands');
+  document.querySelector('body')?.classList.add(cssClasses.modalCommandsActive);
+  e.currentTarget.closest('div').querySelector(dataTags.commandsContainer)?.classList.add(cssClasses.isActive);
+  e.currentTarget.closest(dataTags.lessonContent)?.classList.add(cssClasses.activatedCommands);
 }

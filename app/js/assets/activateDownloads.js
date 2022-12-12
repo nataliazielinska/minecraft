@@ -1,14 +1,19 @@
-import $ from "jquery";
+import {cssClasses} from "./cssClasses";
+import {dataTags} from "./dataTags";
 
 export default function activateDownloads (e) {
-  $(this).parents('.lesson-links').removeClass('is-active');
-  $(this).parents('.lesson-links').siblings('.lesson-downloads').toggleClass('is-active');
+  this.closest(dataTags.lessonLinks)?.classList.remove(cssClasses.isActive);
+  this.closest(dataTags.lessonContent)
+    .querySelector(dataTags.lessonDownloads)?.classList.toggle(cssClasses.isActive);
 
-  $(this).parents('.lesson-links').siblings('.lesson-downloads').on('click', function (e) {
-    e.stopPropagation();
-  });
+  this.closest(dataTags.lessonContent)
+    .querySelector(dataTags.lessonDownloads).addEventListener('click', function (event){
+      event.stopPropagation();
+    });
 
-  $('.lesson-links').children().on('click', function (e) {
-    e.stopPropagation();
-  });
+  for (const element of document.querySelectorAll(dataTags.lessonLinks)) {
+    element.addEventListener('click', function (event){
+      event.stopPropagation();
+    })
+  }
 }
