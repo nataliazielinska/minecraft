@@ -1,7 +1,7 @@
 window.basicCommands = {
-  'Tytuł 11': '/komenda do skopiowania',
-  'Tytuł 22': '/komenda do skopiowania',
-  'Tytuł z opisem komendy': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rutrum dui eu tortor interdum, in vehicula quam sollicitudin. Fusce a nibh nec lorem ',
-  'Tytuł frdfed': '/komenda do skopiowania'
+  'Command 1': 'command content 1',
+  'Command 2': 'command content 2',
+  'Command 3': 'command content 3',
+  'Command 4': 'command content 4'
 }
 
